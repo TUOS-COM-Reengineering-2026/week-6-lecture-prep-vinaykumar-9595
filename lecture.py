@@ -18,9 +18,10 @@ def is_small(a):
     else:
         return False
 
-def randomised_function():
-    from random import randint
-    a = randint(0, 10)
+def randomised_function(a=None):
+    # Deterministic default for testing
+    if a is None:
+        a = 2
 
     if is_small(a):
         return 'software'

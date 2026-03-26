@@ -1,29 +1,26 @@
 # PART 1
 def is_palindrome(s):
-    # Iterative version to avoid RecursionError
-    left = 0
-    right = len(s) - 1
+    # Check if a string is a palindrome or not.
+    # To make it simple, let's assume that an empty string is a palindrome.
 
-    while left < right:
-        if s[left] != s[right]:
-            return False
-        left += 1
-        right -= 1
-
-    return True
-
+    if len(s) <= 1:
+        return True  # base case 1
+    else:
+        for i in range(0, len(s)):
+            if s[i] != s[-(i+1)]:
+                return False
+        return True
 
 # PART 2
 def is_small(a):
-    return a < 5
+    if a < 5:
+        return True
+    else:
+        return False
 
-
-def randomised_function(a=None):
+def randomised_function():
     from random import randint
-
-    # Keep compatibility with original behaviour
-    if a is None:
-        a = randint(0, 10)
+    a = randint(0, 10)
 
     if is_small(a):
         return 'software'
@@ -33,9 +30,8 @@ def randomised_function(a=None):
 
 # PART 3 (Advanced Topic)
 def difficult_function(x, y):
-    # Slightly relaxed threshold to avoid floating-point issues
-    if complex_math(x, y) < 1e-5:
-        return 'solved!'
+    if complex_math(x, y) < 0.000001:
+        return 'solved!'  ## TODO: How can we cover this line? In other words, how to find (x, y) that makes this line executed?
     else:
         return 'not yet'
 
@@ -45,24 +41,9 @@ def complex_math(x, y):
     a = 20
     b = 0.2
     c = 2 * np.pi
-
-    t1 = -a * np.exp(-b * np.sqrt(0.5 * ((x - 10) ** 2 + y ** 2)))
-    t2 = -np.exp(0.5 * (np.cos(c * (x - 10)) + np.cos(c * y)))
-
+    t1 = -a * np.exp(-b * np.sqrt(0.5 * ((x-10) ** 2 + y ** 2)))
+    t2 = -np.exp(0.5 * (np.cos(c * (x-10)) + np.cos(c * y)))
     return t1 + t2 + a + np.e
 
-
-# MAIN (for manual verification only)
 if __name__ == '__main__':
-    # PART 1
-    print(is_palindrome("madam"))      # True
-    print(is_palindrome("hello"))      # False
-    print(is_palindrome("a" * 10000))  # No recursion error
-
-    # PART 2
-    print(randomised_function(2))      # software
-    print(randomised_function(7))      # engineering
-    print(randomised_function())      # random
-
-    # PART 3
-    print(difficult_function(10, 0))   
+    print(difficult_function(10, 0))
